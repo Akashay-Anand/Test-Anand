@@ -1,3 +1,7 @@
+// Java DSA.................
+// Playing with Bits
+
+
 // this code checks wether the k'th bit is set or not
 
 static void bit_k_set(int n, int k){
@@ -36,3 +40,48 @@ static void bit_k_set(int n, int k){
         System.out.println("No");
 	    
 	}
+
+// Count number of set bits of a number
+
+static void count_set_bits(int n){
+        int x = 0;
+        int temp = n;
+        // Method 1
+        for(int i = 1; i<=n; i=i*2){
+            if((n&i) != 0) x++;
+        }
+        System.out.println(x);
+        
+        // Method 2
+        x = 0;
+        while(temp>0){
+            // if (temp%2 == 1) x++;
+            x = x + (temp & 1);
+            temp= temp/2;
+        }
+        System.out.println(x);
+        
+        // Method 3
+        // Brian Kerningam's Algorithm
+        // traverse througt only the set bits ; TC: Thita(set bit count);
+        x = 0;
+        temp = n;
+        while(temp > 0){
+            temp = temp & (temp-1);
+            x++;
+        }
+        System.out.println(x);
+}
+    // Method 4 ; for 32 bit number only ;Table based aproach // TC: O(1)
+    // the idea is to set count bits in 'O(1)' time with some preprocessing involved
+    //
+    
+    int tbl[] = new int[256];
+    static void initialize(){
+        tbl[0] = 0;
+        for(int i = 1; i< 256; i++)
+            tbl[i] = tbl[i & (i-1)] + 1;
+    }
+    static void countSetBits(int n){
+       return tbl[n & 255] + tbl[(n>>8) & 255] + tbl[(n>>16) & 255] + tbl[(n>>24)];
+    }
