@@ -85,3 +85,88 @@ static void count_set_bits(int n){
     static void countSetBits(int n){
        return tbl[n & 255] + tbl[(n>>8) & 255] + tbl[(n>>16) & 255] + tbl[(n>>24)];
     }
+    
+// check whether the number is power of 2 or not
+
+static boolean power_of_2(int n){
+        int x= 0;
+        if(n==0) return false;
+        while(n !=1){
+            if(n%2 != 0) return false;
+            n = n/2;
+        }
+        return true;
+}
+	
+	// Method 2; O(1) ; Brian Kerningam algorithm ;
+	static boolean power_of_2Brian(int n){
+	    if(n==0) return false;
+	    return ((n & (n-1)) == 0);
+	    
+	   // return (n && ((n&(n-1)) == 0)); // single line code try in c++
+	}
+
+    // a array have odd occurance of one number,"rest are even".. find that number;
+    // '^' property: x^x = 0; x^0 = x;
+    // TC: Theta(n); Aux Space: O(1)
+    static void odd_num(int arr[] ,int n){
+        int ans = arr[0];
+        for(int i = 1; i<n; i++ )
+            ans = ans ^ arr[i];
+        
+        System.out.println(ans);
+    }
+    
+    
+        // a array have odd occurance of one number,"rest are even".. find that number;
+    // '^' property: x^x = 0; x^0 = x;
+    // TC: Theta(n); Aux Space: O(1)
+    static void odd_num(int arr[] ,int n){
+        int ans = arr[0];
+        for(int i = 1; i<n; i++ )
+            ans = ans ^ arr[i];
+        
+        System.out.println(ans);
+    }
+    
+    // code to find two numbers with odd occurance in array; the array should have two odd accurance only
+    static void oddAppearing(int arr[], int n)
+    {
+        int xor = 0, res1 = 0, res2 = 0; 
+        
+        for (int i = 0; i < n; i++) 
+            xor = xor ^ arr[i]; 
+        
+        // this finds a number which has only 1 bit set and the set bit corresponds to last set bit of xor
+        int sn = xor & (~(xor - 1)); 
+  
+        for (int i = 0; i < n; i++) 
+        { 
+            if ((arr[i] & sn) != 0) 
+                res1 = res1 ^ arr[i]; 
+            else
+                res2 = res2 ^ arr[i]; 
+        } 
+        System.out.println( res1 + " " + res2);
+    }
+    
+    
+    // print all subset of a String
+    // no overhed of recursion ; TC: Theta(2^n * n) ; 
+    static void printPowerSet(String str)
+    {
+    	int n = str.length();
+
+    	int powSize = (int)Math.pow(2, n);
+
+    	for(int counter = 0; counter < powSize; counter++)
+    	{
+    		for(int j = 0; j < n; j++)
+    		{
+    			if((counter & (1 << j)) != 0)
+    				System.out.print(str.charAt(j));
+    		}
+    		
+    		System.out.println();
+    	}
+    }
