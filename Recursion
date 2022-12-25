@@ -1,0 +1,25 @@
+
+
+// C code
+// this will print binary representation of a number... through recursive call
+void fun1(int n){
+    if(n==0) return;
+    fun1(n/2);
+    printf("%d",n%2);
+}
+
+// java
+// Fibonacci series
+static int fibonacciNo(int n){
+	   // if(n<=1) return n;
+	    if(n==0) return 0;
+	    if(n==1) return 1;
+	    return fibonacciNo(n-1) + fibonacciNo(n-2);
+	}
+
+// Palindrome
+
+	static boolean isPalindrome(String str , int start, int end){
+	   if(start >= end) return true;
+	   return ((str.charAt(start)==str.charAt(end)) && isPalindrome(str, start + 1, end - 1));
+	} // TC: O() ? // SC: O(n/2)
