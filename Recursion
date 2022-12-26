@@ -19,7 +19,34 @@ static int fibonacciNo(int n){
 
 // Palindrome
 
-	static boolean isPalindrome(String str , int start, int end){
+static boolean isPalindrome(String str , int start, int end){  // strings are pased by rifference always... no need of address '&' locater as c and c++.
 	   if(start >= end) return true;
-	   return ((str.charAt(start)==str.charAt(end)) && isPalindrome(str, start + 1, end - 1));
+	   return ((str.charAt(start)==str.charAt(end)) && isPalindrome(str, start + 1, end - 1)); // [Note-1]
 	} // TC: O() ? // SC: O(n/2)
+
+// sum of digits
+// TC: Theta(digit count) // SC(Aux): Theta(digit count) (i.e: for recursive call)
+// use itrative code for constant space.
+static int sumOfDigit(int n){
+        if(n<=9) return n;
+        return sumOfDigit(n/10) + n%10;
+    }
+
+// Rope Cutting Problem
+// TC: O(3^n)
+    static int cutCount(int n, int a, int b, int c){
+        if(n == 0) return 0;
+        if(n < 0) return -1;
+        
+        int ans = Math.max( cutCount(n-a,a,b,c) ,Math.max(cutCount(n-b,a,b,c), cutCount(n-c,a,b,c)) ); // [Note-2]
+        
+        if(ans == -1) return -1;
+        else return ans +1;
+    }
+
+
+/*
+> Note-1 : '&&' operation checks the secound condition only if the first condition gives 'True' value, otherwise it directly executed as 'false.
+> Note-2 : Math.max() only takes two parameters in java... but it can take more than 2 in c++;
+
+*/
