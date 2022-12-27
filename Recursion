@@ -32,7 +32,7 @@ static int sumOfDigit(int n){
         return sumOfDigit(n/10) + n%10;
     }
 
-// Rope Cutting Problem
+//>>> Rope Cutting Problem
 // TC: O(3^n)
     static int cutCount(int n, int a, int b, int c){
         if(n == 0) return 0;
@@ -44,6 +44,61 @@ static int sumOfDigit(int n){
         else return ans +1;
     }
 
+//>>> print all subset of a string 
+static void subset(String str, String current, int i){
+	    if(i==str.length()) {
+	        System.out.println(current);
+	        return;
+	    }
+	    subset(str,current,i + 1);
+	    subset(str, current + str.charAt(i),i + 1);
+	}
+
+// jsoephus problem
+    static int jsoephus(int n, int k){
+        if(n==1) return 0;
+        
+        return (jsoephus(n-1,k)+k)%n;
+    }
+
+// count subset whose sum isequal to given sum
+	static int countSubsets(int arr[], int n, int sum)
+	{
+		if(n==0)
+			return sum==0? 1 : 0;
+			
+		return countSubsets(arr, n-1, sum) + countSubsets(arr, n-1, sum - arr[n-1]);
+	}
+
+// Permutation of string
+	public static void main(String[] args) {
+        permute("ABCD",0);
+	}
+	
+	static void permute(String str, int i)
+	{
+		if (i == str.length()-1)
+			System.out.println(str);
+		else
+		{
+			for (int j = i; j <= str.length()-1; j++)
+			{
+				str = swap(str,i,j);
+				permute(str, i+1);
+				str = swap(str,i,j);
+			}
+		}
+	}
+
+	static String swap(String a, int i, int j)
+	{
+		char temp;
+		char[] charArray = a.toCharArray();
+		temp = charArray[i] ;
+		charArray[i] = charArray[j];
+		charArray[j] = temp;
+		return String.valueOf(charArray);
+	}
 
 /*
 > Note-1 : '&&' operation checks the secound condition only if the first condition gives 'True' value, otherwise it directly executed as 'false.
