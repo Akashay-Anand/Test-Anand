@@ -1,0 +1,77 @@
+
+// find second largest element in the given array
+	static int secondlargest(int a[],int n)
+    {
+        int largest=0;
+        int res=-1;
+        
+        for(int i=1;i<n;i++)
+        {
+            if(a[i]>a[largest])
+            {
+                res=largest;
+                largest=i;
+            }
+            else if(a[i]!=a[largest])
+            {
+                if(res==-1||a[i]>a[res])
+                res=i;
+            }
+        }
+        return res;
+    }
+    
+    
+  // this code will short every distinct element to the  starting and return new size.
+	// array is sorted initialy
+	static int RemoveDuplicates(int arr[]){
+	    int ans = 1;
+	    for(int i = 1; i<arr.length; i++){
+	        if(arr[ans-1] != arr[i]){
+	            arr[ans] = arr[i];
+	            ans++;
+	        }
+	    }
+	    return ans;
+      }
+      
+      
+	// move all '0' to the end of array
+	static int MoveZerosToEnd(int arr[]){
+        int count = 0;
+         for(int i =0; i<arr.length;i++){
+             if(arr[i] != 0){
+                 int temp = arr[count];
+                 arr[count] = arr[i];
+                 arr[i] = temp;
+                 count++;
+             }
+         }
+         return count;
+	}
+
+
+// rotate the arr d times 
+	// TC: O(n) ; SC: constant / O(1)
+	// concept: reverse(arr,0,d-1); > reverse(arr,d,n-1); > reverse(arr,0,n-1);
+	
+	static void LeftRotateByD(int arr[], int d){
+	    int n = arr.length;
+        reverse(arr,0,d-1);
+        reverse(arr,d,n-1);
+        reverse(arr,0,n-1);
+	}
+	static void reverse(int arr[], int start,int end){
+	    while(start<end){
+	        int temp = arr[start];
+	        arr[start] = arr[end];
+	        arr[end] = temp;
+	        start++;
+	        end--;
+	    }
+	}
+  
+
+// 
+
+      
